@@ -22,32 +22,30 @@
 
     <!-- SECCIÓN 2: Características -->
     <section id="section2" class="section">
-  <div class="section-content">
-    <h2>¿Cansado de alarmas que no se adaptan a tu día?</h2>
-    <p class="intro-text">
-      La tecnología de WakeMap cambia la forma en que recibes alarmas. Estas son sus principales ventajas:
-    </p>
-    <div class="features-grid">
-      <div class="feature-card">
-        <img src="https://img.icons8.com/ios-filled/100/2575fc/gps-device.png" alt="Geolocalización" />
-        <h3>Alarmas basadas en ubicación</h3>
-        <p>Despierta o recibe avisos solo cuando llegues a la zona que tú eliges, sin importar la hora.</p>
+      <div class="section-content">
+        <h2>¿Cansado de alarmas que no se adaptan a tu día?</h2>
+        <p class="intro-text">
+          La tecnología de WakeMap cambia la forma en que recibes alarmas. Estas son sus principales ventajas:
+        </p>
+        <div class="features-grid">
+          <div class="feature-card">
+            <img src="https://img.icons8.com/ios-filled/100/2575fc/gps-device.png" alt="Geolocalización" />
+            <h3>Alarmas basadas en ubicación</h3>
+            <p>Despierta o recibe avisos solo cuando llegues a la zona que tú eliges, sin importar la hora.</p>
+          </div>
+          <div class="feature-card">
+            <img src="https://img.icons8.com/ios-filled/100/2575fc/radius.png" alt="Rango personalizable" />
+            <h3>Rango de activación personalizable</h3>
+            <p>Define la distancia exacta en la que quieres que se active la alarma para ajustarla a tus necesidades.</p>
+          </div>
+          <div class="feature-card">
+            <img src="https://img.icons8.com/ios-filled/100/2575fc/target.png" alt="Precisión" />
+            <h3>Alta precisión</h3>
+            <p>WakeMap utiliza tecnología avanzada para detectar tu ubicación con exactitud y activar las alarmas en el momento correcto.</p>
+          </div>
+        </div>
       </div>
-      <div class="feature-card">
-        <img src="https://img.icons8.com/ios-filled/100/2575fc/radius.png" alt="Rango personalizable" />
-        <h3>Rango de activación personalizable</h3>
-        <p>Define la distancia exacta en la que quieres que se active la alarma para ajustarla a tus necesidades.</p>
-      </div>
-      <div class="feature-card">
-        <img src="https://img.icons8.com/ios-filled/100/2575fc/target.png" alt="Precisión" />
-        <h3>Alta precisión</h3>
-        <p>WakeMap utiliza tecnología avanzada para detectar tu ubicación con exactitud y activar las alarmas en el momento correcto.</p>
-      </div>
-
-    </div>
-  </div>
-</section>
-
+    </section>
 
     <!-- SECCIÓN 3: Cómo funciona -->
     <section id="section3" class="section">
@@ -80,7 +78,7 @@
             <img src="autocompletado.png" alt="Autocompletado" />
           </figure>
           <figure>
-            <figcaption>Rango Personlizado</figcaption>
+            <figcaption>Rango Personalizado</figcaption>
             <img src="rango.png" alt="Configuración Rango" />
           </figure>
           <figure>
@@ -97,7 +95,7 @@
         <h2>Descarga WakeMap para Android</h2>
         <p>Disponible exclusivamente en Google Play Store.</p>
         <div class="download-buttons">
-          <a href="#" class="btn-store">
+          <a href="#" class="btn-store" aria-label="Descargar WakeMap en Google Play Store">
             <img src="https://img.icons8.com/ios-filled/24/ffffff/google-play.png" alt="Google Play" />
             Google Play
           </a>
@@ -146,22 +144,33 @@
       }
     }
 
-    window.addEventListener('wheel', onScroll, { passive: true });
+    function isMobile() {
+      return /Mobi|Android/i.test(navigator.userAgent);
+    }
 
-    window.addEventListener('keydown', e => {
-      if(e.key === 'ArrowDown' || e.key === 'PageDown') {
-        if(currentIndex < sections.length -1) {
-          currentIndex++;
-          showSection(currentIndex);
+    if (!isMobile()) {
+      window.addEventListener('wheel', onScroll, { passive: true });
+
+      window.addEventListener('keydown', e => {
+        if(e.key === 'ArrowDown' || e.key === 'PageDown') {
+          if(currentIndex < sections.length -1) {
+            currentIndex++;
+            showSection(currentIndex);
+          }
         }
-      }
-      if(e.key === 'ArrowUp' || e.key === 'PageUp') {
-        if(currentIndex > 0) {
-          currentIndex--;
-          showSection(currentIndex);
+        if(e.key === 'ArrowUp' || e.key === 'PageUp') {
+          if(currentIndex > 0) {
+            currentIndex--;
+            showSection(currentIndex);
+          }
         }
-      }
-    });
+      });
+    } else {
+      // En móvil, mostrar todas las secciones juntas
+      sections.forEach(sec => {
+        sec.classList.add('active');
+      });
+    }
   </script>
 </body>
 </html>

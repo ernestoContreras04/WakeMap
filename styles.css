@@ -49,8 +49,8 @@ body, html {
 }
 
 .logo {
-    width: 12rem;
-    height: auto;
+  width: 12rem;
+  height: auto;
 }
 
 #section1 {
@@ -300,6 +300,30 @@ body, html {
 
 /* Responsive */
 @media (max-width: 768px) {
+  body, html {
+    height: auto;
+    overflow: visible;
+  }
+
+  #app {
+    position: static;
+    height: auto;
+    overflow: visible;
+  }
+
+  .section {
+    position: relative;
+    height: auto;
+    opacity: 1 !important;
+    transform: none !important;
+    pointer-events: auto !important;
+    padding: 2rem 1rem;
+  }
+
+  .section-content {
+    overflow-y: visible;
+  }
+
   #section1 h1 {
     font-size: 4rem;
   }
