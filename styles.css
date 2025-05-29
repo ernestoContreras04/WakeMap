@@ -270,6 +270,10 @@ input[type="email"]:focus {
   background: #fff9c4;
 }
 
+.email-input {
+  margin-top: 10px;
+}
+
 /* Footer */
 #section7 {
   background: #222;
