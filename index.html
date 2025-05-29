@@ -54,52 +54,45 @@
         <div class="how-it-works-content">
           <div class="step">
             <h3>1. Marca tus zonas</h3>
-            <p>Define en el mapa los lugares donde quieres que las alarmas se activen.</p>
+            <p>Define el lugar donde quieres que la alarma se active.</p>
+            <img src="autocompletado.png" alt="Captura Autocompletado" class="step-img" />
           </div>
           <div class="step">
             <h3>2. Ajusta tus alarmas</h3>
             <p>Elige el rango de activación para tu alarma.</p>
+            <img src="rango.png" alt="Captura Rango Personalizado" class="step-img" />
           </div>
           <div class="step">
             <h3>3. Deja que WakeMap haga el resto</h3>
             <p>La app detecta tu ubicación y gestiona las alarmas automáticamente.</p>
+            <img src="paginaPrincipal.png" alt="Captura Alarma Activa" class="step-img" />
           </div>
         </div>
       </div>
     </section>
 
-    <!-- SECCIÓN 4: Capturas -->
-    <section id="section4" class="section">
-      <div class="section-content">
-        <h2>Capturas</h2>
-        <div class="screenshots-gallery">
-          <figure>
-            <figcaption>Autocompletado</figcaption>
-            <img src="autocompletado.png" alt="Autocompletado" />
-          </figure>
-          <figure>
-            <figcaption>Rango Personalizado</figcaption>
-            <img src="rango.png" alt="Configuración Rango" />
-          </figure>
-          <figure>
-            <figcaption>Alarma Activa</figcaption>
-            <img src="paginaPrincipal.png" alt="Alarma activa" />
-          </figure>
-        </div>
-      </div>
-    </section>
-
-    <!-- SECCIÓN 5: Descargar -->
+    <!-- SECCIÓN 5: Pre-registro -->
     <section id="section5" class="section">
       <div class="section-content">
-        <h2>Descarga WakeMap para Android</h2>
-        <p>Disponible exclusivamente en Google Play Store.</p>
-        <div class="download-buttons">
-          <a href="#" class="btn-store" aria-label="Descargar WakeMap en Google Play Store">
-            <img src="https://img.icons8.com/ios-filled/24/ffffff/google-play.png" alt="Google Play" />
-            Google Play
-          </a>
-        </div>
+        <h2>Pre-regístrate para WakeMap</h2>
+        <p>La app está en desarrollo. Regístrate para ser uno de los primeros en probarla cuando esté lista.</p>
+        <form id="preRegisterForm" action="#" method="POST">
+          <input 
+            type="email" 
+            name="email" 
+            placeholder="Tu correo electrónico" 
+            required 
+            style="padding: 0.75rem 1rem; font-size: 1rem; border-radius: 30px; border: 1px solid #ccc; width: 250px; max-width: 90%; margin-bottom: 1rem;"
+          />
+          <br />
+          <button 
+            type="submit" 
+            class="btn-pre-register"
+            style="padding: 0.75rem 1.5rem; font-size: 1.1rem; border-radius: 30px; border: none; background: #111; color: white; cursor: pointer;"
+          >
+            Enviar
+          </button>
+        </form>
       </div>
     </section>
 
@@ -107,13 +100,14 @@
     <section id="section6" class="section">
       <div class="section-content footer-content">
         <p>© 2025 WakeMap. Todos los derechos reservados.</p>
-        <p>Contacto: contacto@wakemap.com</p>
+        <p>Contacto: ernesto.contreras@ciclosformativosceu.es</p>
       </div>
     </section>
 
   </div>
 
   <script>
+    // Scroll & swipe sections logic (igual que en tu original)
     const sections = document.querySelectorAll('.section');
     let currentIndex = 0;
     let isThrottled = false;
@@ -144,13 +138,50 @@
       }
     }
 
+    let touchStartY = 0;
+    let touchEndY = 0;
+
+    function handleTouchStart(e) {
+      touchStartY = e.changedTouches[0].screenY;
+    }
+
+    function handleTouchEnd(e) {
+      touchEndY = e.changedTouches[0].screenY;
+      handleGesture();
+    }
+
+    function handleGesture() {
+      if (isThrottled) return;
+      const diff = touchStartY - touchEndY;
+      if (Math.abs(diff) < 50) return;
+
+      isThrottled = true;
+      setTimeout(() => { isThrottled = false; }, 1000);
+
+      if(diff > 0) {
+        if(currentIndex < sections.length -1) {
+          currentIndex++;
+          showSection(currentIndex);
+        }
+      } else {
+        if(currentIndex > 0) {
+          currentIndex--;
+          showSection(currentIndex);
+        }
+      }
+    }
+
     function isMobile() {
       return /Mobi|Android/i.test(navigator.userAgent);
     }
 
-    if (!isMobile()) {
+    if (isMobile()) {
+      sections.forEach(sec => sec.classList.add('active'));
+      window.addEventListener('touchstart', handleTouchStart, { passive: true });
+      window.addEventListener('touchend', handleTouchEnd, { passive: true });
+    } else {
+      showSection(currentIndex);
       window.addEventListener('wheel', onScroll, { passive: true });
-
       window.addEventListener('keydown', e => {
         if(e.key === 'ArrowDown' || e.key === 'PageDown') {
           if(currentIndex < sections.length -1) {
@@ -165,12 +196,21 @@
           }
         }
       });
-    } else {
-      // En móvil, mostrar todas las secciones juntas
-      sections.forEach(sec => {
-        sec.classList.add('active');
-      });
     }
+
+    // Código para el formulario pre-registro:
+    const form = document.getElementById('preRegisterForm');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      // Borrar input
+      const emailInput = form.querySelector('input[name="email"]');
+      emailInput.value = '';
+
+      // Mostrar mensaje
+      form.innerHTML = '<p style="font-size:1.2rem; color: white; font-weight: 600;">Pre-registro enviado</p>';
+    });
   </script>
 </body>
 </html>

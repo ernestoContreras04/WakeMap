@@ -6,8 +6,8 @@ body, html {
   height: 100vh;
   overflow: hidden;
   font-family: 'Poppins', sans-serif;
-  background: #f9fafc;
   color: #222;
+  background: white; /* fondo neutro en desktop */
 }
 
 #app {
@@ -31,8 +31,40 @@ body, html {
   transform: translateY(30px);
   transition: opacity 0.8s ease, transform 0.8s ease;
   pointer-events: none;
-  overflow-y: auto;
-  background: white;
+  overflow-y: hidden;
+  background: white; /* fallback */
+}
+
+/* Fondos degradados por sección en PC */
+#section1 {
+  background: linear-gradient(135deg, #bea01d 0%, #4f0338 100%);
+  color: white;
+  text-align: center;
+}
+#section2 {
+  background: linear-gradient(135deg, #bea01d 0%, #4f0338 100%);
+  color: #ffffff;
+  text-align: center;
+  padding-top: 2rem;
+}
+#section3 {
+  background: linear-gradient(135deg, #bea01d 0%, #4f0338 100%);
+  color: #222;
+  text-align: center;
+  padding-top: 2rem;
+}
+#section5 {
+  background: linear-gradient(135deg, #bea01d 0%, #4f0338 100%);
+  color: white;
+  text-align: center;
+  padding: 4rem 1rem;
+}
+#section6 {
+  background: #222;
+  color: #bbb;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  font-size: 0.9rem;
 }
 
 .section.active {
@@ -41,11 +73,10 @@ body, html {
   pointer-events: auto;
 }
 
-/* Scroll interno para secciones con contenido extenso */
 .section-content {
   max-width: 900px;
-  overflow-y: auto;
   width: 100%;
+  background: transparent; /* para que fondo secciones brille */
 }
 
 .logo {
@@ -53,25 +84,18 @@ body, html {
   height: auto;
 }
 
-#section1 {
-  background: linear-gradient(135deg, #bea01d 0%, #4f0338 100%);
-  color: white;
-  text-align: center;
-}
-
+/* Texto y layouts */
 #section1 h1 {
   font-size: 6rem;
   font-weight: 700;
   margin-bottom: 2rem;
 }
-
 #section1 h2 {
   font-size: 1.8rem;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
 }
-
 #section1 h4 {
   font-size: 1rem;
   margin-bottom: 2rem;
@@ -81,6 +105,11 @@ body, html {
   font-weight: lighter;
 }
 
+#section2 h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+}
+
 .intro-text {
   max-width: 600px;
   margin: 0 auto 3rem auto;
@@ -88,19 +117,6 @@ body, html {
   font-weight: 400;
   color: #ffffff;
   line-height: 1.5;
-}
-
-/* Sección 2 */
-#section2 {
-  background: linear-gradient(135deg, #bea01d 0%, #4f0338 100%);
-  color: #ffffff;
-  text-align: center;
-  padding-top: 2rem;
-}
-
-#section2 h2 {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
 }
 
 .features-grid {
@@ -118,47 +134,37 @@ body, html {
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
   transition: transform 0.3s ease;
 }
-
 .feature-card:hover {
   transform: translateY(-10px);
 }
-
 .feature-card img {
   margin-bottom: 1rem;
   filter: invert(52%) sepia(84%) saturate(532%) hue-rotate(5deg) brightness(90%) contrast(90%);
   width: 70px;
   height: 70px;
 }
-
 .feature-card h3 {
   margin-bottom: 0.75rem;
   color: #bea01d;
   font-weight: 600;
 }
-
 .feature-card p {
   font-size: 1rem;
   color: #555;
 }
 
-/* Sección 3 */
-#section3 {
-  background: #f9fafc;
-  color: #222;
-  text-align: center;
-  padding-top: 2rem;
-}
-
-#section3 h2 {
+#section3 h2, #section5 h2 {
   font-size: 2.5rem;
   margin-bottom: 2rem;
+  color: #ffffff;
 }
 
+/* Cómo funciona: pasos con imagen debajo */
 .how-it-works-content {
   display: flex;
   gap: 2rem;
   justify-content: center;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   max-width: 900px;
   margin: 0 auto;
 }
@@ -169,83 +175,20 @@ body, html {
   padding: 2rem;
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.07);
   max-width: 300px;
-  text-align: left;
-  color: #222;
-}
-
-.step h3 {
-  margin-bottom: 1rem;
-  color: #bea01d;
-  font-weight: 600;
-}
-
-.step p {
-  font-size: 1rem;
-  color: #555;
-}
-
-/* Sección 4 */
-#section4 {
-  background: white;
-  color: #222;
   text-align: center;
-  padding: 2rem 1rem;
-}
-
-#section4 h2 {
-  font-size: 2.5rem;
-  margin-bottom: 2rem;
-}
-
-.screenshots-gallery {
+  color: #222;
   display: flex;
-  justify-content: center;
-  gap: 1.5rem;
-  flex-wrap: wrap;
-  max-width: 900px;
+  flex-direction: column;
+  gap: 1rem;
   margin: 0 auto;
 }
 
-.screenshots-gallery figure {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: 0;
-}
-
-.screenshots-gallery figcaption {
-  margin-bottom: 0.5rem;
-  font-weight: 600;
-  color: #000;
-  font-size: 1.1rem;
-  text-align: center;
-}
-
-.screenshots-gallery img {
-  border-radius: 20px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-  width: 250px;
+.step img.step-img {
+  border-radius: 15px;
+  width: 100%;
   height: auto;
   object-fit: cover;
-  transition: transform 0.3s ease;
-  cursor: pointer;
-}
-
-.screenshots-gallery img:hover {
-  transform: scale(1.05);
-}
-
-/* Sección 5 */
-#section5 {
-  background: linear-gradient(135deg, #bea01d 0%, #2a98cb 100%);
-  color: white;
-  text-align: center;
-  padding: 4rem 1rem;
-}
-
-#section5 h2 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.1);
 }
 
 #section5 p {
@@ -284,7 +227,6 @@ body, html {
   background: #333;
 }
 
-/* Sección 6 */
 #section6 {
   background: #222;
   color: #bbb;
@@ -298,32 +240,27 @@ body, html {
   margin: 0 auto;
 }
 
-/* Responsive */
+/* === Cambios para móvil: fondo degradado general y secciones transparentes === */
 @media (max-width: 768px) {
   body, html {
     height: auto;
-    overflow: visible;
+    overflow-y: auto;
+    background: linear-gradient(135deg, #bea01d 0%, #4f0338 100%);
   }
-
   #app {
     position: static;
     height: auto;
     overflow: visible;
   }
-
   .section {
-    position: relative;
-    height: auto;
+    position: relative !important;
+    height: auto !important;
     opacity: 1 !important;
     transform: none !important;
     pointer-events: auto !important;
+    background: transparent !important; /* transparente para fondo continuo */
     padding: 2rem 1rem;
   }
-
-  .section-content {
-    overflow-y: visible;
-  }
-
   #section1 h1 {
     font-size: 4rem;
   }
@@ -332,6 +269,7 @@ body, html {
   }
   .how-it-works-content {
     flex-direction: column;
+    gap: 2rem;
   }
   .screenshots-gallery {
     flex-direction: column;
@@ -341,5 +279,8 @@ body, html {
   .download-buttons {
     flex-direction: column;
     gap: 1rem;
+  }
+  .step {
+    max-width: 90%;
   }
 }
