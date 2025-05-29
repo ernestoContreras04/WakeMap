@@ -135,7 +135,35 @@
 
   </div>
 
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+
   <script>
+    (function(){
+      emailjs.init('v-wIvH9WS895lqLxq'); 
+    })();
+
+    const form = document.getElementById('preRegisterForm');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      const emailInput = form.querySelector('input[name="email"]');
+      const userEmail = emailInput.value;
+
+      const templateParams = {
+        user_email: userEmail
+      };
+
+      emailjs.send('service_lh4ld7i', 'template_5b5wi2a', templateParams)
+        .then(function(response) {
+          console.log('Email enviado con éxito!', response.status, response.text);
+          form.innerHTML = '<p style="font-size:1.2rem; color: white; font-weight: 600;">Pre-registro enviado. Revisa tu correo.</p>';
+        }, function(error) {
+          console.error('Error al enviar email:', error);
+          form.innerHTML = '<p style="font-size:1.2rem; color: white; font-weight: 600;">Error al enviar confirmación. Intenta más tarde.</p>';
+        });
+    });
+
     // Scroll & swipe sections logic
     const sections = document.querySelectorAll('.section');
     let currentIndex = 0;
@@ -226,20 +254,6 @@
         }
       });
     }
-
-    // Código para el formulario pre-registro:
-    const form = document.getElementById('preRegisterForm');
-
-    form.addEventListener('submit', function(event) {
-      event.preventDefault();
-
-      // Borrar input
-      const emailInput = form.querySelector('input[name="email"]');
-      emailInput.value = '';
-
-      // Mostrar mensaje
-      form.innerHTML = '<p style="font-size:1.2rem; color: white; font-weight: 600;">Pre-registro enviado</p>';
-    });
 
     // Temporizador lanzamiento
     const launchDate = new Date('2025-06-24T00:00:00').getTime();
