@@ -71,8 +71,17 @@
       </div>
     </section>
 
-    <!-- SECCIÓN 4: Preguntas frecuentes (FAQ) -->
+    <!-- SECCIÓN 4: Temporizador de lanzamiento -->
     <section id="section4" class="section">
+      <div class="section-content">
+        <h2>¡Falta poco para WakeMap!</h2>
+        <p>Estamos preparando todo para lanzarla. Mientras tanto, mira cuánto falta:</p>
+        <div id="countdown"></div>
+      </div>
+    </section>
+
+    <!-- SECCIÓN 5: Preguntas frecuentes (FAQ) -->
+    <section id="section5" class="section">
       <div class="section-content">
         <h2>Preguntas frecuentes</h2>
         <details>
@@ -90,8 +99,8 @@
       </div>
     </section>
 
-    <!-- SECCIÓN 5: Pre-registro -->
-    <section id="section5" class="section">
+    <!-- SECCIÓN 6: Pre-registro -->
+    <section id="section6" class="section">
       <div class="section-content">
         <h2>Pre-regístrate para WakeMap</h2>
         <p>La app está en desarrollo. Regístrate para ser uno de los primeros en probarla cuando esté lista.</p>
@@ -115,8 +124,8 @@
       </div>
     </section>
 
-    <!-- SECCIÓN 6: Footer -->
-    <section id="section6" class="section">
+    <!-- SECCIÓN 7: Footer -->
+    <section id="section7" class="section">
       <div class="section-content footer-content">
         <p>© 2025 WakeMap. Todos los derechos reservados.</p>
         <p>Contacto: ernesto.contreras@ciclosformativosceu.es</p>
@@ -126,7 +135,7 @@
   </div>
 
   <script>
-    // Scroll & swipe sections logic (igual que en tu original)
+    // Scroll & swipe sections logic
     const sections = document.querySelectorAll('.section');
     let currentIndex = 0;
     let isThrottled = false;
@@ -230,6 +239,32 @@
       // Mostrar mensaje
       form.innerHTML = '<p style="font-size:1.2rem; color: white; font-weight: 600;">Pre-registro enviado</p>';
     });
+
+    // Temporizador lanzamiento
+    const launchDate = new Date('2025-06-24T00:00:00').getTime();
+    const countdownEl = document.getElementById('countdown');
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const diff = launchDate - now;
+
+      if(diff <= 0) {
+        countdownEl.innerHTML = "¡WakeMap ya está disponible!";
+        clearInterval(interval);
+        return;
+      }
+
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+      countdownEl.innerHTML = 
+        `${days}d ${hours}h ${minutes}m ${seconds}s`;
+    }
+
+    updateCountdown();
+    const interval = setInterval(updateCountdown, 1000);
   </script>
 </body>
 </html>

@@ -57,15 +57,22 @@ body, html {
   background: linear-gradient(135deg, #bea01d 0%, #4f0338 100%);
   color: white;
   text-align: center;
-  padding-top: 2rem;
+  padding: 4rem 1rem;
+  font-family: 'Poppins', sans-serif;
 }
 #section5 {
   background: linear-gradient(135deg, #bea01d 0%, #4f0338 100%);
   color: white;
   text-align: center;
-  padding: 4rem 1rem;
+  padding-top: 2rem;
 }
 #section6 {
+  background: linear-gradient(135deg, #bea01d 0%, #4f0338 100%);
+  color: white;
+  text-align: center;
+  padding: 4rem 1rem;
+}
+#section7 {
   background: #222;
   color: #bbb;
   padding: 1.5rem 1rem;
@@ -114,10 +121,11 @@ body, html {
 #section2 h2,
 #section3 h2,
 #section4 h2,
-#section5 h2 {
+#section5 h2,
+#section6 h2 {
   font-size: 2.5rem;
   margin-bottom: 1.5rem;
-  color: #ffffff;
+  color: #f0f4f8;
 }
 
 .intro-text {
@@ -125,7 +133,7 @@ body, html {
   margin: 0 auto 3rem auto;
   font-size: 1.2rem;
   font-weight: 400;
-  color: #ffffff;
+  color: #f0f4f8;
   line-height: 1.5;
 }
 
@@ -209,13 +217,7 @@ body, html {
   margin-right: auto;
 }
 
-#section5 p {
-  font-size: 1.1rem;
-  margin-bottom: 2rem;
-}
-
-/* FAQ styles */
-details {
+#section5 details {
   background: #f0f4f8;
   border-radius: 15px;
   padding: 1rem 1.5rem;
@@ -227,7 +229,7 @@ details {
   text-align: left;
 }
 
-summary {
+#section5 summary {
   font-weight: 600;
   font-size: 1.2rem;
   color: #bea01d;
@@ -235,15 +237,24 @@ summary {
   user-select: none;
 }
 
-details[open] summary {
+#section5 details[open] summary {
   color: #4f0338;
 }
 
-details p {
+#section5 details p {
   margin-top: 0.75rem;
   color: #555;
   font-size: 1rem;
   line-height: 1.4;
+}
+
+/* Temporizador lanzamiento */
+#countdown {
+  font-weight: 700;
+  font-size: 3rem;
+  color: #bea01d;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.7);
+  margin-top: 1rem;
 }
 
 /* Botón pre-registro */
@@ -260,7 +271,7 @@ input[type="email"]:focus {
 }
 
 /* Footer */
-#section6 {
+#section7 {
   background: #222;
   color: #bbb;
   padding: 1.5rem 1rem;
@@ -304,15 +315,14 @@ input[type="email"]:focus {
     flex-direction: column;
     gap: 2rem;
   }
-  .download-buttons {
-    flex-direction: column;
-    gap: 1rem;
-  }
   .step {
     max-width: 90%;
   }
-  details {
+  #section5 details {
     max-width: 100%;
     margin: 1rem 0;
+  }
+  #countdown {
+    font-size: 2.5rem;
   }
 }
